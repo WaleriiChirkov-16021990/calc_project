@@ -5,7 +5,6 @@
 
 
 import re
-import math
 
 
 def check_complex(x):
@@ -99,7 +98,7 @@ def sum_func(x):
             result.append('+')
         else:
             result.append('-')
-        result.append(str(math.fabs((nums1[1] + nums2[1]))) + nums2[2] )
+        result.append(str(abs((nums1[1] + nums2[1]))) + nums2[2] )
         result = ' '.join(result)
         print(f'{nums1} + {nums2} = {result} ')
         return result
@@ -124,7 +123,7 @@ def subtraction_func(x):
             result.append('+')
         else:
             result.append('-')
-        result.append(str(math.abs(nums1[1] - nums2[1])) + nums2[2])
+        result.append(str(abs(nums1[1] - nums2[1])) + nums2[2])
         result = ' '.join(result)
         print(f'{nums1} {nums2} = {result} ')
         return result
@@ -148,7 +147,7 @@ def multiplication_func(x):
             result.append('+')
         else:
             result.append('-')
-        result.append(str(math.abs(nums1[0] * nums2[1] + nums1[1] * nums2[0])) + nums2[2])
+        result.append(str(abs(nums1[0] * nums2[1] + nums1[1] * nums2[0])) + nums2[2])
         result = ' '.join(result)
         print(f'{nums1} * {nums2} = {result} ')
         return result
@@ -173,7 +172,7 @@ def division_func(x):
             result.append('+')
         else:
             result.append('-')
-        result.append(str(math.abs((nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2))) + nums2[2])
+        result.append(str(abs((nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2))) + nums2[2])
         result = ' '.join(result)
         print(f'{nums1} / {nums2} = {result} ')
         return result
