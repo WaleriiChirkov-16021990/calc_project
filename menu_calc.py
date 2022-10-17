@@ -43,26 +43,26 @@ def user_input_check(f: int, x):
                     char_ = None
                     imaginary = None
                     sign = 1
-                    user_input = user_input.replace(' ', '')
-                    for i in range(len(user_input)):
-                        if user_input[0] == '-':
+                    user_input_co = user_input.replace(' ', '')
+                    for i in range(len(user_input_co)):
+                        if user_input_co[0] == '-':
                             sign = -1
-                        if user_input[i].isalpha():
-                            imaginary = user_input[i]
+                        if user_input_co[i].isalpha():
+                            imaginary = user_input_co[i]
                         for j in ind_char:
-                            if  user_input[i] == j:
-                                char_ = user_input[i]
-                    user_input = user_input.split(char_)
-                    user_input[0] = user_input[0].replace(' ', '').replace('-', '')
-                    user_input[1] = user_input[1].replace(f'{imaginary}', '', 1)\
+                            if  user_input_co[i] == j:
+                                char_ = user_input_co[i]
+                    user_input_co = user_input_co.split(char_)
+                    user_input_co[0] = user_input_co[0].replace(' ', '').replace('-', '')
+                    user_input_co[1] = user_input_co[1].replace(f'{imaginary}', '', 1)\
                         .replace(' ', '')
-                    if user_input[0].isdigit() and user_input[1].isdigit() :
-                        user_input = list(map(int, user_input))
+                    if user_input_co[0].isdigit() and user_input_co[1].isdigit() :
+                        user_input_co = list(map(int, user_input_co))
                         if char_ == '-':
-                            user_input[1] = - user_input[1]
+                            user_input_co[1] = - user_input_co[1]
                         if sign == -1:
-                            user_input[0] == - user_input[0]
-                        return user_input[0], user_input[1], imaginary
+                            user_input_co[0] == - user_input_co[0]
+                        return user_input_co[0], user_input_co[1], imaginary, user_input
                     else:
                         raise TypeError
                 else:
@@ -100,7 +100,7 @@ def sum_func(x):
             result.append('-')
         result.append(str(abs((nums1[1] + nums2[1]))) + nums2[2] )
         result = ' '.join(result)
-        print(f'{nums1} + {nums2} = {result} ')
+        print(f'{nums1[3]} + {nums2[3]} = {result} ')
         return result
 
 
@@ -125,7 +125,7 @@ def subtraction_func(x):
             result.append('-')
         result.append(str(abs(nums1[1] - nums2[1])) + nums2[2])
         result = ' '.join(result)
-        print(f'{nums1} {nums2} = {result} ')
+        print(f'{nums1[3]} {nums2[3]} = {result} ')
         return result
 
 
@@ -149,7 +149,7 @@ def multiplication_func(x):
             result.append('-')
         result.append(str(abs(nums1[0] * nums2[1] + nums1[1] * nums2[0])) + nums2[2])
         result = ' '.join(result)
-        print(f'{nums1} * {nums2} = {result} ')
+        print(f'{nums1[3]} * {nums2[3]} = {result} ')
         return result
 
 
@@ -166,15 +166,14 @@ def division_func(x):
         return result
     else:
         result = []
-        result.append(str((nums1[0] * nums2[0] + nums1[0] * nums2[1])/\
-                            (nums2[0] ** 2 + nums2[1] ** 2)))
+        result.append(str(round((nums1[0] * nums2[0] + nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2), 3)))
         if (nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2) > 0:
             result.append('+')
         else:
             result.append('-')
-        result.append(str(abs((nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2))) + nums2[2])
+        result.append(str(round(abs((nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2))), 3) + nums2[2])
         result = ' '.join(result)
-        print(f'{nums1} / {nums2} = {result} ')
+        print(f'{nums1[3]} / {nums2[3]} = {result} ')
         return result
 
 
@@ -192,6 +191,8 @@ def menu_calc():
                 inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(sum_func(result[-1]))
+                else:
+                    result.append(sum_func(0))
             else:
                 result.append(sum_func(0))
             continue
@@ -201,6 +202,8 @@ def menu_calc():
                 inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(subtraction_func(result[-1]))
+                else:
+                    result.append(subtraction_func(0))
             else:
                 result.append(subtraction_func(0))
             continue
@@ -210,6 +213,8 @@ def menu_calc():
                 inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(multiplication_func(result[-1]))
+                else:
+                    result.append(multiplication_func(0))
             else:
                 result.append(multiplication_func(0))
             continue
@@ -219,6 +224,8 @@ def menu_calc():
                 inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(division_func(result[-1]))
+                else:
+                    result.append(division_func(0))
             else:
                 result.append(division_func(0))
             continue
