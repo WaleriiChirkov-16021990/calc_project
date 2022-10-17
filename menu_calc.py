@@ -91,6 +91,20 @@ def sum_func(x):
         result = round(nums1 + nums2, 3)
         print(f'{nums1} + {nums2} = {result} ')
         return result
+    if isinstance(nums2, int| float) and isinstance(nums1, tuple) or \
+        isinstance(nums2, tuple) and isinstance(nums1, int| float):
+        result = []
+        if isinstance(nums1, int| float):
+            nums1, nums2 = nums2, nums1
+        result.append(str(nums2 - nums1[0]))
+        if nums1[1] < 0:
+            result.append('-')
+        else:
+            result.append('+')
+        result.append(str(abs(nums1[1])) + nums1[2])
+        result = ' '.join(result)
+        print(f'{nums2} + {nums1[3]} = {result} ')
+        return result
     else:
         result = []
         result.append(str(nums1[0] + nums2[0]))
@@ -116,6 +130,21 @@ def subtraction_func(x):
         result = round(nums1 - nums2, 3)
         print(f'{nums1} - {nums2} = {result} ')
         return result
+    if isinstance(nums2, int| float) and isinstance(nums1, tuple) or \
+        isinstance(nums2, tuple) and isinstance(nums1, int| float):
+        result = []
+        if isinstance(nums1, int| float):
+            nums1, nums2 = nums2, - nums1
+            nums1[0] = - nums1[0]
+        result.append(str(nums2 - nums1[0]))
+        if nums1[1] < 0:
+            result.append('-')
+        else:
+            result.append('+')
+        result.append(str(abs(nums1[1])) + nums1[2])
+        result = ' '.join(result)
+        print(f'{nums2} - {nums1[3]} = {result} ')
+        return result
     else:
         result = []
         result.append(str(nums1[0] - nums2[0]))
@@ -125,7 +154,7 @@ def subtraction_func(x):
             result.append('-')
         result.append(str(abs(nums1[1] - nums2[1])) + nums2[2])
         result = ' '.join(result)
-        print(f'{nums1[3]} {nums2[3]} = {result} ')
+        print(f'{nums1[3]} - {nums2[3]} = {result} ')
         return result
 
 
@@ -139,6 +168,20 @@ def multiplication_func(x):
     if isinstance(nums2, int| float) and isinstance(nums1, int| float):
         result = round(nums1 * nums2, 3)
         print(f'{nums1} * {nums2} = {result} ')
+        return result
+    if isinstance(nums2, int| float) and isinstance(nums1, tuple) or \
+        isinstance(nums2, tuple) and isinstance(nums1, int| float):
+        result = []
+        if isinstance(nums1, int| float):
+            nums1, nums2 = nums2, nums1
+        result.append(str(nums2 * nums1[0]))
+        if nums1[1] < 0:
+            result.append('-')
+        else:
+            result.append('+')
+        result.append(str(abs(nums1[1]) * nums2) + nums1[2])
+        result = ' '.join(result)
+        print(f'{nums2} * {nums1[3]} = {result} ')
         return result
     else:
         result = []
@@ -164,6 +207,19 @@ def division_func(x):
         result = round(nums1 / nums2, 3)
         print(f'{nums1} / {nums2} = {result} ')
         return result
+    # if isinstance(nums2, int| float) and isinstance(nums1, tuple) or \
+    #     isinstance(nums2, tuple) and isinstance(nums1, int| float):
+    #     result = []
+    #     if isinstance(nums1, int| float):
+    #         result.append(str(nums2 * nums1[0]))
+    #         if nums1[1] < 0:
+    #             result.append('-')
+    #         else:
+    #             result.append('+')
+    #         result.append(str(abs(nums1[1]) * nums2) + nums1[2])
+    #         result = ' '.join(result)
+    #         print(f'{nums2} * {nums1[3]} = {result} ')
+    #         return result
     else:
         result = []
         result.append(str(round((nums1[0] * nums2[0] + nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2), 3)))
@@ -171,14 +227,14 @@ def division_func(x):
             result.append('+')
         else:
             result.append('-')
-        result.append(str(round(abs((nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2))), 3) + nums2[2])
+        result.append(str(round(abs((nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2)), 3)) + nums2[2])
         result = ' '.join(result)
         print(f'{nums1[3]} / {nums2[3]} = {result} ')
         return result
 
 
 def menu_calc():
-    print('Привед вам калькулятор.')
+    print('Перед вами калькулятор.')
     user_input = None
     result = []
     while True:
