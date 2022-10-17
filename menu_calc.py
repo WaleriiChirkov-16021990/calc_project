@@ -181,16 +181,15 @@ def division_func(x):
 def menu_calc():
     print('Привед вам калькулятор.')
     user_input = None
+    result = []
     while True:
         print('Для дальнейшей работы введите цифру, которая соответствует пункту меню.')
         print('1. Сложение \n2. Вычитание \n3. Умножение \n4. Деление \n5. Выход')
-        result = []
         user_input = user_input_check(1, 1)
         if user_input == 1:
             if len(result) > 0:
                 print('')
-                inp = int(input('Использовать предыдущий результат вычисления?\
-                    если да введите 1, нет - введите 2'))
+                inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(sum_func(result[-1]))
             else:
@@ -199,8 +198,7 @@ def menu_calc():
         elif user_input == 2:
             if len(result) > 0:
                 print('')
-                inp = int(input('Использовать предыдущий результат вычисления?\
-                    если да введите 1, нет - введите 2'))
+                inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(subtraction_func(result[-1]))
             else:
@@ -209,8 +207,7 @@ def menu_calc():
         elif user_input == 3:
             if len(result) > 0:
                 print('')
-                inp = int(input('Использовать предыдущий результат вычисления?\
-                    если да введите 1, нет - введите 2'))
+                inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(multiplication_func(result[-1]))
             else:
@@ -219,8 +216,7 @@ def menu_calc():
         elif user_input == 4:
             if len(result) > 0:
                 print('')
-                inp = int(input('Использовать предыдущий результат вычисления?\
-                    если да введите 1, нет - введите 2'))
+                inp = int(input('Использовать предыдущий результат вычисления?\nесли да введите 1, нет - введите 2: '))
                 if inp == 1:
                     result.append(division_func(result[-1]))
             else:
