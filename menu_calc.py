@@ -4,23 +4,20 @@
 #  в соответствии с выбором пользователя.
 
 
-from curses.ascii import isalpha, isdigit
-
-
-def user_input_check(f: function, x):
+def user_input_check(f: int, x):
     while True:
         if x == 0:
             user_input = input('Введите первое число: ')
         else:
             user_input = input('Введите второе число: ')
         try:
-            if f == menu_calc:
+            if f == 1 :
                 user_input = int(user_input)
                 if 1 <= user_input <= 5:
                     break
                 else:
                     raise ValueError
-            if f == sum_func  :
+            if f == 2:
                 if user_input.isdigit() and not isinstance(x, tuple):
                     user_input = int(user_input)
                     break
@@ -70,63 +67,110 @@ def user_input_check(f: function, x):
     return user_input
 
 
-def sum_func():
-    nums1 = user_input_check(sum_func, 0)
-    nums2 = user_input_check(sum_func, nums1)
+def sum_func(x):
+    if x == 0:
+        nums1 = user_input_check(2, 0)
+        nums2 = user_input_check(2, nums1)
+    else:
+        nums1 = x
+        nums2 = user_input_check(2, nums1)
     if isinstance(nums2, int| float) and isinstance(nums1, int| float):
+        print(f'{nums1} + {nums2} = {nums1 + nums2} ')
         return nums1 + nums2
+    else:
+        result = []
+        result.append(str(nums1[0] + nums2[0]))
+        result.append(str(nums1[1] + nums2[1]) + str(num2[2]) )
+        print(' '.join(result))
+        return ' '.join(result)
 
-def subtraction_func():
+def subtraction_func(x):
+    if x == 0:
+        nums1 = user_input_check(2, 0)
+        nums2 = user_input_check(2, nums1)
+    else:
+        nums1 = x
+        nums2 = user_input_check(2, nums1)
     result = None
-    nums1 = user_input_check(sum_func, 0)
-    nums2 = user_input_check(sum_func, nums1)
     if isinstance(nums2, int| float) and isinstance(nums1, int| float):
-        result = nums2 - nums1
+        result = nums1 - nums2
         return result
     else:
         result = []
-        result.append(nums1[0] - nums2[0])
+        result.append(str(nums1[0] - nums2[0]))
         result.append(str(nums1[1] - nums2[1]) + str(num2[2]) )
         print(' '.join(result))
         return ' '.join(result)
 
 
-def multiplication_func():
-    nums1 = user_input_check(sum_func, 0)
-    nums2 = user_input_check(sum_func, nums1)
+def multiplication_func(x):
+    if x == 0:
+        nums1 = user_input_check(2, 0)
+        nums2 = user_input_check(2, nums1)
+    else:
+        nums1 = x
+        nums2 = user_input_check(2, nums1)
     if isinstance(nums2, int| float) and isinstance(nums1, int| float):
         return nums1 + nums2
+    else:
+        result = []
+        result.append(str(nums1[0] * nums2[0]))
+        result.append(str(nums1[0] * nums2[1]) + str(num[2]))
+        result.append(str(nums1[1] * nums2[0]) + str(num[2]))
+        result.append(str(nums1[1] + nums2[1]) + str(num2[2]))
+        print(' '.join(result))
+        return ' '.join(result)
 
 
-def division_func():
-    nums1 = user_input_check(sum_func, 0)
-    nums2 = user_input_check(sum_func, nums1)
+def division_func(x):
+    if x == 0:
+        nums1 = user_input_check(2, 0)
+        nums2 = user_input_check(2, nums1)
+    else:
+        nums1 = x
+        nums2 = user_input_check(2, nums1)
     if isinstance(nums2, int| float) and isinstance(nums1, int| float):
         return nums1 + nums2
+    else:
+        result = []
+        result.append(str((nums1[0] * nums2[0] + nums1[0] * nums2[1])/\
+                            (nums2[0] ** 2 + nums2[1] ** 2)))
+        result.append(str((nums2[0] * nums1[1] - nums1[0] * nums2[1])/\
+                        (nums2[0] ** 2 + nums2[1] ** 2)) + str(num2[2]))
+        print(' '.join(result))
+        return ' '.join(result)
 
 
 
 def menu_calc():
     print('Привед вам калькулятор.')
-    print('Для дальнейшей работы введите цифру, которая соответствует пункту меню.')
-    print('1. Сложение \n2. Вычитание \n3. Умножение \n4. Деление \n5. Выход')
-    result = []
-    user_input = user_input(menu_calc)
-    if user_input == 1:
-        sum_func()
-    elif user_input == 2:
-        subtraction_func()
-    elif user_input == 3:
-        multiplication_func()
-    elif user_input == 4:
-        division_func()
-    else:
-
-
-
-
-
-
+    user_input = None
+    while True:
+        print('Для дальнейшей работы введите цифру, которая соответствует пункту меню.')
+        print('1. Сложение \n2. Вычитание \n3. Умножение \n4. Деление \n5. Выход')
+        result = []
+        user_input = user_input_check(1, 1)
+        if user_input == 1:
+            if len(result) > 0:
+                print('')
+                inp = int(input('Использовать предыдущий результат вычисления?\
+                    если да введите 1, нет - введите 2'))
+                if inp == 1:
+                    result.append(sum_func(result[-1]))
+            else:
+                result.append(sum_func(0))
+            continue
+        elif user_input == 2:
+            result.append(subtraction_func())
+            continue
+        elif user_input == 3:
+            result.append(multiplication_func())
+            continue
+        elif user_input == 4:
+            result.append(division_func())
+            continue
+        elif user_input == 5:
+            break
 
 
 menu_calc()
