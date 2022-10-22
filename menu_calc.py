@@ -165,6 +165,7 @@ def multiplication_func(x):
     else:
         nums1 = x
         nums2 = user_input_check(2, nums1)
+
     if isinstance(nums2, int| float) and isinstance(nums1, int| float):
         result = round(nums1 * nums2, 3)
         print(f'{nums1} * {nums2} = {result} ')
@@ -203,6 +204,14 @@ def division_func(x):
     else:
         nums1 = x
         nums2 = user_input_check(2, nums1)
+    if nums2 == 0:
+        print('\nМатематическая ошибка, на "0" делить нельзя!')
+        nums2 = user_input_check(2, nums1)
+        if nums2 == 0:
+            print('\nВыберите другую операцию.')
+            return 0
+    print(nums1)
+    print(nums2)
     if isinstance(nums2, int| float) and isinstance(nums1, int| float):
         result = round(nums1 / nums2, 3)
         print(f'{nums1} / {nums2} = {result} ')
@@ -222,7 +231,7 @@ def division_func(x):
     #         return result
     else:
         result = []
-        result.append(str(round((nums1[0] * nums2[0] + nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2), 3)))
+        result.append(str(round(((nums1[0] * nums2[0] + nums1[1] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2)), 3)))
         if (nums2[0] * nums1[1] - nums1[0] * nums2[1])/(nums2[0] ** 2 + nums2[1] ** 2) > 0:
             result.append('+')
         else:
