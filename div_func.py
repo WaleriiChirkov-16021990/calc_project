@@ -7,7 +7,6 @@ from color_out import out_red as red
 from color_out import out_green as green
 
 
-
 def division_func(x):
     if x == 0:
         nums1 = UI_check(2, 0)
