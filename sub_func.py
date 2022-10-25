@@ -27,7 +27,7 @@ def subtraction_func(x):
         if isinstance(nums2, int| float):
             a = nums1[0] - nums2
             if a != 0:
-                result.append(str(a))
+                result.append(str(round(a, 3)))
             b = nums1[1]
             if b != 0:
                 if b < 0:
@@ -38,7 +38,7 @@ def subtraction_func(x):
                 if b == 1 or b == -1:
                     result.append(nums1[2])
                 else:
-                    result.append(str(abs(b)) + nums1[2])
+                    result.append(str(round(abs(b), 3)) + nums1[2])
             if len(result) == 0:
                 result = 0
             else:
@@ -50,7 +50,7 @@ def subtraction_func(x):
         elif isinstance(nums1, int| float):
             a = nums1 - nums2[0]
             if a != 0:
-                result.append(str(a))
+                result.append(str(round(a, 3)))
             b = nums2[1]
             if b != 0:
                 if b < 0:
@@ -61,7 +61,7 @@ def subtraction_func(x):
                 if b == 1 or b == -1:
                     result.append(nums2[2])
                 else:
-                    result.append(str(abs(b)) + nums2[2])
+                    result.append(str(round(abs(b), 3)) + nums2[2])
             if len(result) == 0:
                 result = 0
             else:
@@ -72,9 +72,9 @@ def subtraction_func(x):
             return result
     else:
         result = []
-        a =  nums1[0] + nums2[0]
+        a =  nums1[0] - nums2[0]
         if a != 0:
-            result.append(str(a))
+            result.append(str(round(a, 3)))
         b = nums1[1] - nums2[1]
         if b != 0:
             if b > 0:
@@ -85,7 +85,7 @@ def subtraction_func(x):
             if b == 1 or b == -1:
                 result.append(nums2[2])
             else:
-                result.append(str(abs(b)) + nums2[2])
+                result.append(str(round(abs(b), 3)) + nums2[2])
         if len(result) == 0:
             result = 0
         else:
