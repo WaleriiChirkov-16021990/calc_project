@@ -25,24 +25,43 @@ def check_3_complex(x):
 def sub(x: str):
     y = None
     if x[0] == '-' or x[0] == '+':
-        y = re.sub(r'^\D?\d*\D{1}$', f'0{x}', x)
+        y = re.sub(r'^\w?\d*\w{1}$', f'0{x}', x)
     if x[0].isdigit():
-        y = re.sub('\d*\D{1}', f'0+{x}', x)
+        y = re.sub('\d*\w{1}', f'0+{x}', x)
     if x[0].isalpha():
-        y = re.sub('\D{1}', f'0+1{x}', x)
+        y = re.sub('\w{1}', f'0+1{x}', x)
     return y if y else False
+
+def sub_float(x: str):
+    y = None
+    x = x.replace(' ', '')
+    math = re.search(r'\D?\d+\D{1}\d+[+-]\d+\D{1}\d+\D{1}', x)
+    if math:
+        return x
+    else:
+        if x[0] == '-':
+            y = re.sub(r'\D?\d*\D{1}\d*\w{1}', f'0{x}', x)
+            return y if y else False
+        if x[0].isdigit():
+            y = re.sub(r'\D?\d*\D{1}\d*\w{1}', f'0+{x}', x)
+            return y if y else False
+        if x[0].isalpha():
+            y = re.sub(r'\w{1}', f'0+1{x}', x)
+            return y if y else False
 
 
 def user_input_check(f: int, x, num1 = None):
     while True:
         if x == 0 and f == 2 and num1:
-            user_input = str(num1).strip()
+            user_input = str(num1)
             yellow(f'Первое число = {user_input}')
             white('')
         elif x == 0 and f == 2:
             user_input = input('Введите первое число: ').strip()
+            user_input = user_input.strip()
         elif f == 2 and x != 0:
             user_input = input('Введите второе число: ').strip()
+            user_input = user_input.strip()
         elif f == 1:
             user_input = input('Выберите операцию: ').strip()
         try:
@@ -61,12 +80,14 @@ def user_input_check(f: int, x, num1 = None):
                     or check_2_complex(user_input.replace(' ', ''))\
                         or check_3_complex(user_input.replace(' ', '')):
                     float_ = check_3_complex(user_input.replace(' ', ''))
-                    ind_char = '/*+-%'
+                    ind_char = '+-'
                     char_ = None
                     imaginary = None
                     sign = 1
-                    if check_2_complex(user_input):
+                    if check_2_complex(user_input.replace(' ', '')):
                         user_input_co = sub(user_input.replace(' ', ''))
+                    elif float_:
+                        user_input_co = sub_float(user_input.replace(' ', ''))
                     else:
                         user_input_co = user_input.replace(' ', '')
                     for i in range(len(user_input_co)):
@@ -75,8 +96,9 @@ def user_input_check(f: int, x, num1 = None):
                         if user_input_co[i].isalpha():
                             imaginary = user_input_co[i]
                         for j in ind_char:
-                            if  user_input_co[i] == j:
-                                char_ = user_input_co[i]
+                            if i != 0:
+                                if  user_input_co[i] == j:
+                                    char_ = user_input_co[i]
                     if char_ == '+' or char_ == '-':
                         if sign == -1:
                             user_input_co = user_input_co[1:]
